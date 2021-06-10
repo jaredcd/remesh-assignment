@@ -9,6 +9,13 @@ import {
 export default class ConversationList extends Component {
     constructor(props) {
         super(props);
+
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.getData = this.getData.bind(this);
+        this.conversation_search = React.createRef();
+        this.conversation_title = React.createRef();
+        this.conversation_date = React.createRef();
+
         this.state = {
             data: [],
             loaded: false,
@@ -16,8 +23,9 @@ export default class ConversationList extends Component {
         };
     }
 
-    componentDidMount() {
-        fetch("api/conversations")
+    getData() {
+        const query = this.conversation_search.current.value ? `?search=${this.conversation_search.current.value}` : '';
+        fetch(`api/conversations${query}`)
             .then(response => {
                 if (response.status > 400) {
                     return this.setState(() => {
@@ -36,17 +44,44 @@ export default class ConversationList extends Component {
             });
     }
 
+    componentDidMount() {
+        this.getData();
+    }
+
+    handleSubmit(event) {
+        fetch('/api/conversations/', {
+            method: 'post',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                "title": this.conversation_title.current.value,
+                "start_date": this.conversation_date.current.value
+            })
+        });
+    }
+
     render() {
         return (
-            <ul>
-                {this.state.data.map(conversation => {
-                    return (
-                        <li key={conversation.id}>
-                            {conversation.start_date} - <Link to={`/conversations/${conversation.id}`}>{conversation.title}</Link>
-                        </li>
-                    );
-                })}
-            </ul>
+            <div>
+                <label>Search</label>
+                <input type="text" id="conversation-search" onChange={this.getData} ref={this.conversation_search} />
+
+                <form onSubmit={this.handleSubmit}>
+                    <label>Create a conversation</label>
+                    <input type="text" id="conversation-title" ref={this.conversation_title} required />
+                    <input type="date" id="conversation-date" ref={this.conversation_date} required />
+                    <input type="submit" value="Submit" />
+                </form>
+
+                <ul>
+                    {this.state.data.map(conversation => {
+                        return (
+                            <li key={conversation.id}>
+                                {conversation.start_date} - <Link to={`/conversations/${conversation.id}`}>{conversation.title}</Link>
+                            </li>
+                        );
+                    })}
+                </ul>
+            </div>
         );
     }
 }

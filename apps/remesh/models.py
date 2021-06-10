@@ -13,7 +13,7 @@ class Conversation(models.Model):
 
 class Message(models.Model):
     text = models.TextField()
-    time = models.TimeField()
+    time = models.DateTimeField()
     conversation = models.ForeignKey(
         'Conversation',
         related_name='messages',
@@ -28,7 +28,7 @@ class Message(models.Model):
 
 class Thought(models.Model):
     text = models.TextField()
-    time = models.TimeField()
+    time = models.DateTimeField()
     message = models.ForeignKey(
         'Message',
         related_name='thoughts',
