@@ -1,52 +1,30 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
+import ConversationList from "./ConversationList";
+import Conversation from "./Conversation";
 
-class App extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            data: [],
-            loaded: false,
-            placeholder: "Loading"
-        };
-    }
 
-    componentDidMount() {
-        fetch("api/conversations")
-            .then(response => {
-                if (response.status > 400) {
-                    return this.setState(() => {
-                        return { placeholder: "Something went wrong!" };
-                    });
-                }
-                return response.json();
-            })
-            .then(data => {
-                this.setState(() => {
-                    return {
-                        data,
-                        loaded: true
-                    };
-                });
-            });
-    }
+export default function App() {
+    return (
+        <Router>
+            <div>
+                <Link to="/">Home</Link>
 
-    render() {
-        return (
-            <ul>
-                {this.state.data.map(conversation => {
-                    return (
-                        <li key={conversation.id}>
-                            {conversation.title}
-                        </li>
-                    );
-                })}
-            </ul>
-        );
-    }
+                <hr />
+
+                <Switch>
+                    <Route exact path="/">
+                        <ConversationList />
+                    </Route>
+                    <Route path="/conversations/:id" component={Conversation} />
+                </Switch>
+            </div>
+        </Router>
+    );
 }
-
-export default App;
-
-const container = document.getElementById("app");
-render(<App />, container);

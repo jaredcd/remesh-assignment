@@ -3,14 +3,17 @@ from django.db import models
 
 class Conversation(models.Model):
     title = models.CharField(max_length=150)
-    start_date = models.DateField(auto_now_add=True)
+    start_date = models.DateField()
+
+    class Meta:
+        ordering = ['start_date', 'title']
 
     def _str_(self):
         return self.title
 
 class Message(models.Model):
     text = models.TextField()
-    time = models.TimeField(auto_now_add=True)
+    time = models.TimeField()
     conversation = models.ForeignKey(
         'Conversation',
         related_name='messages',
@@ -25,7 +28,7 @@ class Message(models.Model):
 
 class Thought(models.Model):
     text = models.TextField()
-    time = models.TimeField(auto_now_add=True)
+    time = models.TimeField()
     message = models.ForeignKey(
         'Message',
         related_name='thoughts',

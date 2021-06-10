@@ -20,3 +20,8 @@ class ConversationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Conversation
         fields = ('id', 'title', 'start_date', 'messages')
+
+class ConversationListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Conversation
+        fields = ('id', 'title', 'start_date')
