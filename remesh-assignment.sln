@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "remesh-assignment", "remesh-assignment.pyproj", "{86161F71-F3F2-4051-9DC7-A7503695BE53}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{86161F71-F3F2-4051-9DC7-A7503695BE53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86161F71-F3F2-4051-9DC7-A7503695BE53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {301BE522-1D66-4FC4-B0CA-F5507A7261DA}
+	EndGlobalSection
+EndGlobal
