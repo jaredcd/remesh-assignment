@@ -12,6 +12,7 @@
     <OutputPath>.</OutputPath>
     <Name>remesh-assignment</Name>
     <RootNamespace>remesh-assignment</RootNamespace>
+    <TestFramework>unittest</TestFramework>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>

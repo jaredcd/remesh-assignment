@@ -8,7 +8,7 @@ class Conversation(models.Model):
     class Meta:
         ordering = ['start_date', 'title']
 
-    def _str_(self):
+    def __str__(self):
         return self.title
 
 class Message(models.Model):
@@ -23,7 +23,7 @@ class Message(models.Model):
     class Meta:
         ordering = ['time']
 
-    def _str_(self):
+    def __str__(self):
         return self.text
 
 class Thought(models.Model):
@@ -38,5 +38,5 @@ class Thought(models.Model):
     class Meta:
         ordering = ['time']
 
-    def _str_(self):
+    def __str__(self):
         return self.text
